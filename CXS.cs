@@ -624,20 +624,12 @@ _________ ____  ___  _________
 
             SanitizeCXSAssets();
         }
-
+        // current menus that has CXS
         private static readonly Dictionary<string, Color> menuColors = new Dictionary<string, Color> {
-            { "seralyth", new Color32(118, 6, 252, 128) },
-            { "stupid", new Color32(255, 128, 0, 255) },
-            { "symex", new Color32(138, 43, 226, 255) },
-            { "colossal", new Color32(204, 0, 255, 255) },
-            { "ccm", new Color32(204, 0, 255, 255) },
-            { "untitled", new Color32(45, 115, 175, 255) },
-            { "genesis", Color.blue },
-            { "CXS", Color.gray },
-            { "resurgence", new Color32(113, 10, 10, 255) },
-            { "grate", new Color32(195, 145, 110, 255) },
-            { "sodium", new Color32(220, 208, 255, 255) },
-            { "spectral", new Color32(164, 94, 229, 255) }
+            { "cxs", Color.gray },
+            { "tidalxyz", new Color32(164, 94, 229, 255) },
+            { "glink", new Color32(255, 80, 40, 255) },
+            { "liquidclient", new Color32(0, 191, 255, 255) }
         };
 
         public static void TeleportToMap(string mapName)
