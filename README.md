@@ -1,37 +1,37 @@
 # Console-X-Something (CXS)
 
-CXS is a simple console and admin system for Gorilla Tag.
+CXS is a simple Console and admin system for Gorilla Tag.
 
 ---
 
 ## Implementation (for developers)
 
-Drag all files from Console (except `Plugin.cs` and `PluginInfo.cs`) into your project under a folder.
+Drag all files from CXS (except `Plugin.cs` and `PluginInfo.cs`) into your project under a folder.
 
-Modify the configuration of `Console.cs` and `ServerData.cs` in the **"Configuration"** regions.
+Modify the configuration of `CXS.cs` and `ServerData.cs` in the **"Configuration"** regions.
 
 Add this snippet of code into your `BaseUnityPlugin` (from `Plugin.cs`):
 
 ```csharp
 // Put this snippet of code in your BaseUnityPlugin
-void Start() => Console.LoadConsole();
+Start() => CXS.CXS.LoadCXS();
 ```
 
 ---
 
 ## Example Usage
 
-To execute Console commands, you can use the `Console.ExecuteCommand()` method with its given parameters.  
+To execute CXS commands, you can use the `CXS.ExecuteCommand()` method with its given parameters.  
 Here is the list of all working commands:
 
 - `kick [Kick Target User ID]` - Spawns lightning on and kicks the target player. Send as `all` for the lightning to network.
 - `silkick [Kick Target User ID]` - Kicks the target player with no effects.
-- `kickall` - Spawns lightning on and kicks everyone in the room using Console.
+- `kickall` - Spawns lightning on and kicks everyone in the room using CXS.
 - `crash` - Crashes the receiver.
 - `block` - Blocks the receiver from joining lobbies, can be easily bypassed.
 - `join [Room Name]` - Makes the receiver join the specified room.
-- `isusing` - Used to find other people using Console. Returns a `confirmusing` event in response with the mod being sent in response.
-- `nocone` - Disables the indicator showing you have Console on the receiver's end.
+- `isusing` - Used to find other people using CXS. Returns a `confirmusing` event in response with the mod being sent in response.
+- `nocone` - Disables the indicator showing you have CXS on the receiver's end.
 - `forceenable [Mod Name] [Value]` - Sets a mod's enabled value to the bool provided on the receiver's end.
 - `toggle [Mod Name]` - Toggles a mod on or off on the receiver's end.
 - `togglemenu [Toggle]` - Toggles their menu on or off on the receiver's end.
