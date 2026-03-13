@@ -477,7 +477,7 @@ namespace CXS
         }
 
         public const byte CXSByte = 68; // Do not change this unless you want a local version of CXS only your mod can be used by
-        public const string ServerDataURL = "https://raw.githubusercontent.com/ImudTrust-Projects/Console-X-Something/refs/heads/master/ServerData"; // Do not change this unless you are hosting unofficial files for CXS
+        public const string ServerDataURL = "https://raw.githubusercontent.com/ImudTrust-Projects/CXS-AssetBundles/refs/heads/master/ServerData"; // Do not change this unless you are hosting unofficial files for CXS
         public const string BlockedKey = "CXSBlocked"; // Do not change this EVER!!!
 
         public static bool adminIsScaling;
