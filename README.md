@@ -6,7 +6,7 @@ CXS is a simple console and admin system for Gorilla Tag.
 ## Credits
 
 - Made by **imudtrust**  
-- Ideas from **goldentrophy & Twigcore**
+- Originally by **goldentrophy & Twigcore**
 
 ## Contact
 
