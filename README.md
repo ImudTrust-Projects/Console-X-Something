@@ -1,2 +1,13 @@
-# Console-X-Something
-I like console so i made my own version with custom commands!
+# Console-X-Stone (CXS)
+
+CXS is a simple console and admin system for Gorilla Tag.
+
+
+## Credits
+
+- Made by **imudtrust**  
+- Ideas from **goldentrophy & Twigcore**
+
+## Contact
+
+If you want to use this system or need help, contact me on Discord: `imudtrust`
