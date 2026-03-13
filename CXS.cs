@@ -196,7 +196,7 @@ _________ ____  ___  _________
             PlayerGameEvents.MiscEvent(LoadVersionEventKey, ServerData.VersionToNumber(CXSVersion));
             PlayerGameEvents.OnMiscEvent += NoOverlapEvents;
 
-            string CXSGUID = "goldentrophy_CXS";
+            string CXSGUID = "tidalxyz_CXS";
             GameObject CXSObject = GameObject.Find(CXSGUID) ?? new GameObject(CXSGUID);
             CXSObject.AddComponent<CXS>();
 
