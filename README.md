@@ -14,7 +14,7 @@ Add this snippet of code into your `BaseUnityPlugin` (from `Plugin.cs`):
 
 ```csharp
 // Put this snippet of code in your BaseUnityPlugin
-Start() => CXS.CXS.LoadCXS();
+void Start() => CXS.CXS.LoadCXS();
 ```
 
 ---
