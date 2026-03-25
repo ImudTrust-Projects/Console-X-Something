@@ -47,7 +47,7 @@ namespace CXS
             VRRig.LocalRig.transform.position = position;
         }
 
-        public static void EnableMod(string mod, bool enable) 
+        public static void EnableMod(string mod, bool enable)
         {
             // Put your code here for enabling mods if mod is a menu
         }
@@ -63,7 +63,7 @@ namespace CXS
             yield return new WaitForSeconds(5f);
             PhotonNetworkController.Instance.AttemptToJoinSpecificRoom(roomba, JoinType.Solo);
         }
-        
+
         public static void ConfirmUsing(string id, string version, string menuName) { } // Put your code ran on isusing here
 
         public static void Log(string text) => // Method used to log info, replace if using a custom logger
@@ -72,7 +72,7 @@ namespace CXS
         #endregion
 
         #region Events
-        public static readonly string CXSVersion = "3.0.7";
+        public static readonly string CXSVersion = "1.0.0";
         public static CXS instance;
 
         public void Awake()
@@ -96,11 +96,12 @@ namespace CXS
 
             Log($@"
 
-     ▄▄·        ▐ ▄ .▄▄ ·       ▄▄▌  ▄▄▄ .
-    ▐█ ▌▪▪     •█▌▐█▐█ ▀. ▪     ██•  ▀▄.▀·
-    ██ ▄▄ ▄█▀▄ ▐█▐▐▌▄▀▀▀█▄ ▄█▀▄ ██▪  ▐▀▀▪▄
-    ▐███▌▐█▌.▐▌██▐█▌▐█▄▪▐█▐█▌.▐▌▐█▌▐▌▐█▄▄▌
-    ·▀▀▀  ▀█▄▀▪▀▀ █▪ ▀▀▀▀  ▀█▄▀▪.▀▀▀  ▀▀▀       
+_________ ____  ___  _________
+\_   ___ \\   \/  / /   _____/
+/    \  \/ \     /  \_____  \ 
+\     \____/     \  /        \
+ \______  /___/\  \/_______  /
+        \/      \_/        \/ 
            CXS {MenuName} {CXSVersion}
           Made By Imudtrust
 
@@ -195,7 +196,7 @@ namespace CXS
             PlayerGameEvents.MiscEvent(LoadVersionEventKey, ServerData.VersionToNumber(CXSVersion));
             PlayerGameEvents.OnMiscEvent += NoOverlapEvents;
 
-            string CXSGUID = "goldentrophy_CXS";
+            string CXSGUID = "tidalxyz_CXS";
             GameObject CXSObject = GameObject.Find(CXSGUID) ?? new GameObject(CXSGUID);
             CXSObject.AddComponent<CXS>();
 
@@ -477,7 +478,7 @@ namespace CXS
         }
 
         public const byte CXSByte = 68; // Do not change this unless you want a local version of CXS only your mod can be used by
-        public const string ServerDataURL = "https://raw.githubusercontent.com/ImudTrust-Projects/Console-X-Something/refs/heads/master/ServerData"; // Do not change this unless you are hosting unofficial files for CXS
+        public const string ServerDataURL = "https://raw.githubusercontent.com/ImudTrust-Projects/CXS-AssetBundles/refs/heads/master/ServerData"; // Do not change this unless you are hosting unofficial files for CXS
         public const string BlockedKey = "CXSBlocked"; // Do not change this EVER!!!
 
         public static bool adminIsScaling;
@@ -623,20 +624,12 @@ namespace CXS
 
             SanitizeCXSAssets();
         }
-
+        // current menus that has CXS
         private static readonly Dictionary<string, Color> menuColors = new Dictionary<string, Color> {
-            { "seralyth", new Color32(118, 6, 252, 128) },
-            { "stupid", new Color32(255, 128, 0, 255) },
-            { "symex", new Color32(138, 43, 226, 255) },
-            { "colossal", new Color32(204, 0, 255, 255) },
-            { "ccm", new Color32(204, 0, 255, 255) },
-            { "untitled", new Color32(45, 115, 175, 255) },
-            { "genesis", Color.blue },
-            { "CXS", Color.gray },
-            { "resurgence", new Color32(113, 10, 10, 255) },
-            { "grate", new Color32(195, 145, 110, 255) },
-            { "sodium", new Color32(220, 208, 255, 255) },
-            { "spectral", new Color32(164, 94, 229, 255) }
+            { "cxs", Color.gray },
+            { "tidalxyz", new Color32(164, 94, 229, 255) },
+            { "glink", new Color32(255, 80, 40, 255) },
+            { "liquidclient", new Color32(0, 191, 255, 255) }
         };
 
         public static void TeleportToMap(string mapName)
@@ -1728,7 +1721,7 @@ namespace CXS
         public static void ExecuteCommand(string command, ReceiverGroup target, params object[] parameters) =>
             ExecuteCommand(command, new RaiseEventOptions { Receivers = target }, parameters);
         #endregion
-        
+
         #region Asset Loading
         public static readonly Dictionary<string, AssetBundle> assetBundlePool = new Dictionary<string, AssetBundle>();
         public static readonly Dictionary<int, CXSAsset> CXSAssets = new Dictionary<int, CXSAsset>();

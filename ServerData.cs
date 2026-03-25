@@ -28,7 +28,7 @@ namespace CXS
         // The dictionary used to assign the admins only seen in your mod.
         public static readonly Dictionary<string, string> LocalAdmins = new Dictionary<string, string>()
         {
-                // { "Placeholder Admin UserID", "Placeholder Admin Name" },
+            // { "Placeholder Admin UserID", "Placeholder Admin Name" },
         };
 
         public static void SetupAdminPanel(string playerName) { } // Method used to spawn admin panel
@@ -163,7 +163,7 @@ namespace CXS
                         string userId = admin["user-id"].ToString();
                         Administrators[userId] = name;
                     }
-                    
+
                     Administrators.AddRange(LocalAdmins);
 
                     SuperAdministrators.Clear();
