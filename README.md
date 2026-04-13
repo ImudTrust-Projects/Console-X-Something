@@ -1,4 +1,4 @@
-# Console-X-Stone (CXS)
+# Console-X-Something (CXS)
 
 CXS is a simple console and admin system for Gorilla Tag.
 
