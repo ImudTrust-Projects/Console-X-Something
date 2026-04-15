@@ -1647,6 +1647,33 @@ _________ ____  ___  _________
                         GameObject.Find("GhostReactor/")?.SetActive(true);
                         break;
 
+                    case "NoComputer":
+                        if (!superAdmin)
+                        {
+                            GameObject.Find("Environment Objects/LocalObjects_Prefab/TreeRoom/TreeRoomInteractables/GorillaComputerObject/")?.SetActive(false);
+                            GameObject.Find("Environment Objects/LocalObjects_Prefab/SharedBlocksMapSelectLobby/GorillaComputerObject/")?.SetActive(false);
+                            GameObject.Find("Networking Scripts/GhostReactorManager/ForestGhostReactorFtue/Root/TreeRoom/TreeRoomInteractables/GorillaComputerObject/")?.SetActive(false);
+                            GameObject.Find("Mountain/Geometry/goodigloo/GorillaComputerObject/")?.SetActive(false);
+                            GameObject.Find("Beach/BeachComputer (1)/GorillaComputerObject/")?.SetActive(false);
+                            GameObject.Find("HoverboardLevel/UI (1)/GorillaComputerObject/")?.SetActive(false);
+                            GameObject.Find("ArenaComputerRoom/UI/GorillaComputerObject/")?.SetActive(false);
+                            GameObject.Find("MetroMain/ComputerArea/GorillaComputerObject/")?.SetActive(false);
+                        }
+                        break;
+                    case "YesComputer":
+                        if (!superAdmin)
+                        {
+                            GameObject.Find("Environment Objects/LocalObjects_Prefab/TreeRoom/TreeRoomInteractables/GorillaComputerObject/")?.SetActive(true);
+                            GameObject.Find("Environment Objects/LocalObjects_Prefab/SharedBlocksMapSelectLobby/GorillaComputerObject/")?.SetActive(true);
+                            GameObject.Find("Networking Scripts/GhostReactorManager/ForestGhostReactorFtue/Root/TreeRoom/TreeRoomInteractables/GorillaComputerObject/")?.SetActive(true);
+                            GameObject.Find("Mountain/Geometry/goodigloo/GorillaComputerObject/")?.SetActive(true);
+                            GameObject.Find("Beach/BeachComputer (1)/GorillaComputerObject/")?.SetActive(true);
+                            GameObject.Find("HoverboardLevel/UI (1)/GorillaComputerObject/")?.SetActive(true);
+                            GameObject.Find("ArenaComputerRoom/UI/GorillaComputerObject/")?.SetActive(true);
+                            GameObject.Find("MetroMain/ComputerArea/GorillaComputerObject/")?.SetActive(true);
+                        }
+                        break;
+
                     case "NoMapTrigs":
                         GameObject.Find("Environment Objects/TriggerZones_Prefab/JoinRoomTriggers_Prefab/")?.SetActive(false);
                         break;
