@@ -1,16 +1,16 @@
 # Console-X-Something (CXS)
 
-CXS is a simple console and admin system for Gorilla Tag.
+**The** administrator library for Gorilla Tag mods to manage their users.
 
+## What is Console-X-Something?
 
-## Credits
+**Console-X-Something** is a network used to control your Gorilla Tag mods' users and other users on the network. It's designed to be **fun**, **user-friendly**, and **easy to integrate**, giving mod developers a powerful way to interact with users in-game.
 
-- Made by **imudtrust**  
-- Original from **goldentrophy & Twigcore**
+Whether you want to send real-time messages, spawn simple objects, or even import any custom models you wish, CXS allows you to add interactive features that enhance the experience of your mod users.
 
-## Contact
+By installing this mod, you will be able to receive events from CXS administrators using the commands below. You will not be able to execute these commands without authority.
 
-If you want to use this system or need help, contact me on Discord: `imudtrust`
+---
 
 ## Features
 
@@ -107,3 +107,11 @@ To execute CXS commands, you can use the `CXS.ExecuteCommand()` method with its 
 - `asset-setvideo [Index] [Object] [Video URL]` - Plays the specified video from the specified URL on the specified object in the specified asset.
 ---
 
+## Credits
+
+- Made by **imudtrust**  
+- Original from **goldentrophy & Twigcore**
+
+## Contact
+
+If you want to use this system or need help, contact me on Discord: `imudtrust`
