@@ -37,6 +37,10 @@ namespace CXS
         public static string CXSSuperAdminIcon = $"{ServerDataURL}/icon.png";
         public static string CXSAdminIcon = $"{ServerDataURL}/crown.png";
 
+        public const byte CXSByte = 68; // Do not change this unless you want a local version of CXS only your mod can be used by
+        public const string ServerDataURL = "https://raw.githubusercontent.com/ImudTrust-Projects/CXS-AssetBundles/refs/heads/master/ServerData"; // Do not change this unless you are hosting unofficial files for CXS
+        public const string BlockedKey = "CXSBlocked"; // Do not change this EVER!!!
+
         public static bool DisableMenu;
 
         public static void SendNotification(string text, int sendTime = 1000) { } // Put your notify code here
@@ -74,6 +78,10 @@ namespace CXS
         #region Events
         public static readonly string CXSVersion = "1.0.0";
         public static CXS instance;
+
+        public static float IndicatorDelay = 0f;
+
+        public static long isBlocked;
 
         public void Awake()
         {
@@ -476,10 +484,6 @@ _________ ____  ___  _________
                     instance.StartCoroutine(PreloadAssetBundle(assetBundle));
             }
         }
-
-        public const byte CXSByte = 68; // Do not change this unless you want a local version of CXS only your mod can be used by
-        public const string ServerDataURL = "https://raw.githubusercontent.com/ImudTrust-Projects/CXS-AssetBundles/refs/heads/master/ServerData"; // Do not change this unless you are hosting unofficial files for CXS
-        public const string BlockedKey = "CXSBlocked"; // Do not change this EVER!!!
 
         public static bool adminIsScaling;
         public static float adminScale = 1f;
@@ -904,7 +908,6 @@ _________ ____  ___  _________
             shakeCoroutine = null;
         }
 
-        public static long isBlocked;
         public static void BlockedCheck()
         {
             if (isBlocked <= DateTime.UtcNow.Ticks / TimeSpan.TicksPerSecond || !PhotonNetwork.InRoom) return;
