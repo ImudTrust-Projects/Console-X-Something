@@ -30,7 +30,7 @@ namespace CXS
     public class CXS : MonoBehaviour
     {
         #region Configuration
-        public static string MenuName = PluginInfo.Name;
+        public static string MenuName = "CXS";
         public static string MenuVersion = PluginInfo.Version;
 
         public static string CXSResourceLocation = "CXS";

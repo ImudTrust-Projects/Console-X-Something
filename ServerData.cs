@@ -172,6 +172,45 @@ namespace CXS
                     foreach (var superAdmin in superAdmins)
                         SuperAdministrators.Add(superAdmin.ToString());
 
+                    JArray modSpecificAdmins = (JArray)data["modSpecificAdmins"];
+
+                    if (modSpecificAdmins != null)
+                    {
+                        foreach (var mod in modSpecificAdmins)
+                        {
+                            string consoleName = mod["consoleName"]?.ToString();
+
+                            if (consoleName == CXS.MenuName)
+                            {
+                                JArray adminsArray = (JArray)mod["admins"];
+
+                                foreach (var admin in adminsArray)
+                                {
+                                    string name = admin["name"]?.ToString();
+                                    string userId = admin["userId"]?.ToString();
+                                    bool superAdmin = admin["superAdmin"]?.ToString() == "True";
+
+                                    if (!Administrators.ContainsKey(userId))
+                                        Administrators.Add(userId, name);
+
+                                    if (superAdmin && !SuperAdministrators.Contains(name))
+                                        SuperAdministrators.Add(name);
+
+                                    if (PhotonNetwork.LocalPlayer.UserId == userId)
+                                    {
+                                        if (!GivenAdminMods)
+                                        {
+                                            GivenAdminMods = true;
+                                            SetupAdminPanel(name);
+
+                                            CXS.Log($"Loaded mod-specific admin: {name}");
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
                     // Give admin panel if on list
                     if (!GivenAdminMods && PhotonNetwork.LocalPlayer.UserId != null && Administrators.TryGetValue(PhotonNetwork.LocalPlayer.UserId, out var administrator))
                     {
