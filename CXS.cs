@@ -72,7 +72,7 @@ namespace CXS
         #endregion
 
         #region Events
-        public static readonly string CXSVersion = "1.0.1";
+        public static readonly string CXSVersion = "1.0.2";
         public static CXS instance;
 
         public void Awake()
