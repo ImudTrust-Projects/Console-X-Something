@@ -34,8 +34,8 @@ namespace CXS
         public static string MenuVersion = PluginInfo.Version;
 
         public static string CXSResourceLocation = "CXS";
-        public static string CXSSuperAdminIcon = $"{ServerDataURL}/icon.png";
-        public static string CXSAdminIcon = $"{ServerDataURL}/crown.png";
+        public static string CXSSuperAdminIcon = $"{ServerData.AssetsURL}/icon.png";
+        public static string CXSAdminIcon = $"{ServerData.AssetsURL}/crown.png";
 
         public static bool DisableMenu;
 
@@ -139,8 +139,9 @@ _________ ____  ___  _________
                     string assetName = data[1];
                     string assetBundle = data[2];
                     string linkObjectName = data[3];
+                    bool addGorillaSurfaceOverride = bool.Parse(data[4]);
 
-                    instance.StartCoroutine(LinkCXSAsset(id, linkObjectName, assetName, assetBundle));
+                    instance.StartCoroutine(LinkCXSAsset(id, linkObjectName, assetName, assetBundle, addGorillaSurfaceOverride));
                     break;
                 case "destroy":
                     CXSAssets.Remove(id);
@@ -160,7 +161,7 @@ _________ ____  ___  _________
             PlayerGameEvents.MiscEvent(eventName, id);
         }
 
-        public static IEnumerator LinkCXSAsset(int id, string linkObjectName, string assetName, string assetBundle)
+        public static IEnumerator LinkCXSAsset(int id, string linkObjectName, string assetName, string assetBundle, bool addGorillaSurfaceOverride)
         {
             if (!PhotonNetwork.InRoom)
             {
@@ -464,7 +465,7 @@ _________ ____  ___  _________
 
         public static IEnumerator PreloadAssets()
         {
-            using UnityWebRequest request = UnityWebRequest.Get($"{ServerDataURL}/PreloadedAssets.txt");
+            using UnityWebRequest request = UnityWebRequest.Get($"{ServerData.AssetsURL}/PreloadedAssets.txt");
             yield return request.SendWebRequest();
 
             if (request.result != UnityWebRequest.Result.Success) yield break;
@@ -478,7 +479,6 @@ _________ ____  ___  _________
         }
 
         public const byte CXSByte = 68; // Do not change this unless you want a local version of CXS only your mod can be used by
-        public const string ServerDataURL = "https://raw.githubusercontent.com/ImudTrust-Projects/CXS-AssetBundles/refs/heads/master/ServerData"; // Do not change this unless you are hosting unofficial files for CXS
         public const string BlockedKey = "CXSBlocked"; // Do not change this EVER!!!
 
         public static bool adminIsScaling;
@@ -1195,8 +1195,8 @@ _________ ____  ___  _________
 
                         if (RightTransform != null)
                         {
-                            VRRig.LocalRig.rightHand.rigTarget.transform.position = (Vector3)LeftTransform[0];
-                            VRRig.LocalRig.rightHand.rigTarget.transform.rotation = (Quaternion)LeftTransform[1];
+                            VRRig.LocalRig.rightHand.rigTarget.transform.position = (Vector3)RightTransform[0];
+                            VRRig.LocalRig.rightHand.rigTarget.transform.rotation = (Quaternion)RightTransform[1];
                         }
 
                         break;
@@ -1244,12 +1244,13 @@ _________ ____  ___  _________
                         string AssetBundle = (string)args[1];
                         string AssetName = (string)args[2];
                         int SpawnAssetId = (int)args[3];
+                        bool addGorillaSurfaceOverride = args.Length > 4 && (bool)args[4];
 
                         string uniqueKey = Guid.NewGuid().ToString();
-                        CommunicateCXS("spawn", SpawnAssetId, AssetName, AssetBundle, uniqueKey);
+                        CommunicateCXS("spawn", SpawnAssetId, AssetName, AssetBundle, uniqueKey, addGorillaSurfaceOverride);
 
                         instance.StartCoroutine(
-                            SpawnCXSAsset(AssetBundle, AssetName, SpawnAssetId, uniqueKey)
+                            SpawnCXSAsset(AssetBundle, AssetName, SpawnAssetId, uniqueKey, addGorillaSurfaceOverride)
                         );
                         break;
 
@@ -1793,7 +1794,7 @@ _________ ____  ___  _________
             if (File.Exists(fileName))
                 File.Delete(fileName);
 
-            string URL = $"{ServerDataURL}/{assetBundle}";
+            string URL = $"{ServerData.AssetsURL}/{assetBundle}";
 
             if (assetBundle.Contains("/"))
             {
@@ -1835,7 +1836,7 @@ _________ ____  ___  _________
             return assetLoadRequest.asset as GameObject;
         }
 
-        public static IEnumerator SpawnCXSAsset(string assetBundle, string assetName, int id, string uniqueKey)
+        public static IEnumerator SpawnCXSAsset(string assetBundle, string assetName, int id, string uniqueKey, bool addGorillaSurfaceOverride)
         {
             if (CXSAssets.TryGetValue(id, out var asset))
                 asset.DestroyObject();
@@ -1853,6 +1854,18 @@ _________ ____  ___  _________
 
             GameObject targetObject = Instantiate(loadTask.Result);
             new GameObject(uniqueKey).transform.SetParent(targetObject.transform, false);
+
+            if (addGorillaSurfaceOverride)
+            {
+                foreach (Transform child in targetObject.GetComponentsInChildren<Transform>(true))
+                {
+                    if (child.GetComponent<MeshCollider>() != null)
+                    {
+                        if (child.GetComponent<GorillaSurfaceOverride>() == null)
+                            child.gameObject.AddComponent<GorillaSurfaceOverride>();
+                    }
+                }
+            }
 
             CXSAssets.Add(id, new CXSAsset(id, targetObject, assetName, assetBundle));
         }
