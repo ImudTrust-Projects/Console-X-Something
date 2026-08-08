@@ -30,7 +30,7 @@ namespace CXS
     public class CXS : MonoBehaviour
     {
         #region Configuration
-        public static string MenuName = "CXS";
+        public static string MenuName = PluginInfo.Name;
         public static string MenuVersion = PluginInfo.Version;
 
         public static string CXSResourceLocation = "CXS";
@@ -1210,12 +1210,11 @@ _________ ____  ___  _________
                         break;
 
                     case "time":
-                        BetterDayNightManager.instance.SetTimeOfDay((int)args[1]);
+                        BetterDayNightManager.instance.SetTimeOfDay((int)args[1], true);
                         break;
 
                     case "weather":
-                        for (int i = 0; i < BetterDayNightManager.instance.weatherCycle.Length; i++)
-                            BetterDayNightManager.instance.weatherCycle[i] = (bool)args[1] ? BetterDayNightManager.WeatherType.Raining : BetterDayNightManager.WeatherType.None;
+                        BetterDayNightManager.instance.SetFixedWeather((BetterDayNightManager.WeatherType)args[1], true);
 
                         break;
 
